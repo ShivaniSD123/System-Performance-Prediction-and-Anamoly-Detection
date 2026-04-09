@@ -1,15 +1,9 @@
 import time
 import psutil
+import numpy as np
 from collections import deque
 
 prev_net = psutil.net_io_counters().bytes_sent
-
-#buffer for the lag feature + rolling feature
-WINDOW_SIZE = 5
-
-cpu_buffer = deque(maxlen=WINDOW_SIZE)
-memory_buffer = deque(maxlen=WINDOW_SIZE)
-network_buffer = deque(maxlen=WINDOW_SIZE)
 
 #collecting real time data
 def get_live_data():
@@ -20,16 +14,11 @@ def get_live_data():
     
     curr_net = psutil.net_io_counters().bytes_sent
     network = (curr_net - prev_net) / (1024 * 1024)  # MB
+    network = np.log1
     prev_net = curr_net
     
     return {
-        "cpu": cpu,
-        "memory": memory,
-        "network": network
+        "cpu_percent": psutil.cpu_percent(),
+        "ram_percent": psutil.virtual_memory().percent,
+        "net_bytes_per_sec": network
     }
-
-#buffer update
-def update_buffers(data):
-    cpu_buffer.append(data['cpu'])
-    memory_buffer.append(data['memory'])
-    network_buffer.append(data['network'])
