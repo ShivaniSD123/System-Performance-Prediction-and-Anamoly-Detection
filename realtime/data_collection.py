@@ -14,7 +14,6 @@ def get_live_data():
     
     curr_net = psutil.net_io_counters().bytes_sent
     network = (curr_net - prev_net) / (1024 * 1024)  # MB
-    network = np.log1
     prev_net = curr_net
     
     return {
