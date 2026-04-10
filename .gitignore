@@ -1,3 +1,5 @@
 # Ignore dataset files
 *.csv
 visualizations/plots/
+*.pkl
+__pycache__

@@ -21,9 +21,8 @@ while True:
         data["ram_percent"],
         data["net_bytes_per_sec"]
     ]])
-    actual_scaled = scalar.transform(actual_data)
-    is_anomaly, score, pred = monitor.monitor(input_data, actual_scaled)
-    print(f"Actual: {actual_scaled} | Pred: {pred} | Score: {score:.2f}")
+    is_anomaly, score, pred = monitor.monitor(input_data, actual_data)
+    print(f"Actual: {actual_data} | Pred: {pred} | Score: {score:.2f}")
     
     if is_anomaly:
         alert.alert(score)
