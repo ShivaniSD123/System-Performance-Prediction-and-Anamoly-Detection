@@ -6,11 +6,12 @@ import monitor
 import joblib
 import alert
 import time
+import get_top_process
 
 scalar = joblib.load("../data/scaler.pkl")
 
 anomaly_counter = 0
-CONFIRM_COUNT = 3  # must spike 3 times in a row to alert
+CONFIRM_COUNT = 2  # must spike 3 times in a row to alert
 last_alert_time = 0
 COOLDOWN = 60 #seconds between alerts
 while True:
@@ -42,7 +43,10 @@ while True:
 
     if anomaly_counter >= CONFIRM_COUNT:
         if time.time() - last_alert_time > COOLDOWN:
-            alert.alert(score, data)
+            top_cpu, top_ram = get_top_process.get_top_processes()
+
+            alert.alert(score, data, top_cpu, top_ram)
+
             last_alert_time = time.time()
             anomaly_counter = 0
 
