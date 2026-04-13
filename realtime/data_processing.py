@@ -1,14 +1,20 @@
 import joblib
 import pandas as pd
+
 scaler = joblib.load("../data/scaler.pkl")
-col = joblib.load("../data/column.pkl")
-scale_columns = joblib.load("../data/scale_columns.pkl")
+expected_cols = joblib.load("../data/column.pkl")
+
+FEATURES_TO_USE = ["ram_lag1", "cpu_lag1", "cpu_change", 
+                   "ram_change", "cpu_roll_mean", "ram_roll_mean"]
+
 def preprocess(features):
     df = pd.DataFrame([features])
-    df = df.drop(columns=["cpu_percent", "ram_percent", "net_bytes_per_sec"], errors="ignore")
-
-    df_scaled = scaler.transform(df)
     
-    df = df[col]
-    df[scale_columns] = scaler.transform(df[scale_columns])
+    # Scale the 6 features
+    df[FEATURES_TO_USE] = scaler.transform(df[FEATURES_TO_USE])
+    
+    # Reorder to exactly match training column order ← THIS IS THE FIX
+    df = df[expected_cols]
+    # In data_processing.py temporarily
+    
     return df
