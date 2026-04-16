@@ -3,3 +3,4 @@
 visualizations/plots/
 *.pkl
 __pycache__
+*.json

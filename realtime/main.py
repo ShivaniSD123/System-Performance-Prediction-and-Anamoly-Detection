@@ -64,8 +64,8 @@ while True:
     if anomaly_counter >= CONFIRM_COUNT:
         if time.time() - last_alert_time > COOLDOWN:
 
-            top_cpu, top_ram = get_top_process.get_top_processes()
-            alert.alert(score, data, top_cpu, top_ram)
+            top_process = get_top_process.get_top_processes()
+            alert.alert(score, data, top_process)
 
             last_alert_time = time.time()
             anomaly_counter = 0

@@ -19,7 +19,7 @@ def get_top_processes():
         except:
             continue
 
-    top_cpu = sorted(processes, key=lambda x: x['cpu_percent'] or 0, reverse=True)[:3]
-    top_ram = sorted(processes, key=lambda x: x['memory_percent'] or 0, reverse=True)[:3]
+    top_process = sorted(processes, key=lambda x: (x.get('cpu_percent') or 0) + (x.get('memory_percent') or 0), reverse=True)[:3]
+    #top_ram = sorted(processes, key=lambda x: x['memory_percent'] or 0, reverse=True)[:3]
 
-    return top_cpu, top_ram
+    return top_process
