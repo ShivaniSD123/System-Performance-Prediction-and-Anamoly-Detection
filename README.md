@@ -1,111 +1,167 @@
-    <h1>System Performance Prediction & Anomaly Detection</h1>
+<h1 align="center">🚀 System Performance Prediction & Anomaly Detection</h1>
 
-    <div style="text-align:center;">
-        <span class="badge">Python</span>
-        <span class="badge">Machine Learning</span>
-        <span class="badge">Random Forest</span>
-        <span class="badge">Isolation Forest</span>
-        <span class="badge">Streamlit</span>
-        <span class="badge">Real-Time Monitoring</span>
-    </div>
+<p align="center">
+  <img src="https://img.shields.io/badge/Python-3.10-blue?style=for-the-badge&logo=python">
+  <img src="https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?style=for-the-badge&logo=scikitlearn">
+  <img src="https://img.shields.io/badge/Random%20Forest-Prediction-green?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Isolation%20Forest-Anomaly%20Detection-red?style=for-the-badge">
+  <img src="https://img.shields.io/badge/Streamlit-Dashboard-ff4b4b?style=for-the-badge&logo=streamlit">
+</p>
 
-    <div class="section">
-        <h2>Project Overview</h2>
-        <p>
-            A real-time machine learning system for <span class="highlight">predicting system performance</span> 
-            and detecting anomalous behavior using CPU, RAM, and network telemetry.
-        </p>
+<p align="center">
+  Real-time machine learning system for predicting system performance and detecting anomalies using CPU, RAM, and network telemetry.
+</p>
 
-        <p>
-            Inspired by enterprise monitoring platforms like <strong>Datadog</strong> and 
-            <strong>AWS CloudWatch</strong>, this project provides proactive anomaly detection,
-            process-level root cause attribution, and real-time visualization for local machine monitoring.
-        </p>
-    </div>
+---
 
-    <div class="section">
-        <h2>Key Features</h2>
-        <ul>
-            <li>Real-time monitoring of CPU, RAM, and network usage</li>
-            <li>Machine learning-based CPU & RAM prediction</li>
-            <li>Real-time anomaly detection using Isolation Forest</li>
-            <li>Hybrid detection (ML + rule-based anomaly logic)</li>
-            <li>Process-level anomaly attribution using PID analysis</li>
-            <li>Desktop notifications for abnormal system behavior</li>
-            <li>Interactive dashboard built with Streamlit</li>
-            <li>JSON anomaly logging for post-incident analysis</li>
-        </ul>
-    </div>
+## 📌 Project Overview
 
-    <div class="section">
-        <h2>Architecture</h2>
+This project is a **real-time system monitoring and anomaly detection platform** that predicts CPU and RAM utilization while detecting abnormal system behavior using machine learning.
 
-        <div class="architecture">
-            psutil Data Collection → Feature Engineering → Scaling → Random Forest Prediction →
-            Isolation Forest Detection → Alert Engine → Streamlit Dashboard
-        </div>
-    </div>
+Inspired by enterprise monitoring platforms like **Datadog** and **AWS CloudWatch**, the system provides:
 
-    <div class="section">
-        <h2>Machine Learning Pipeline</h2>
+- 📈 Real-time performance prediction
+- 🚨 Anomaly detection with alerts
+- 🔍 Process-level root cause attribution
+- 📊 Interactive monitoring dashboard
 
-        <h3>Prediction Model</h3>
-        <ul>
-            <li><strong>Random Forest Regressor</strong> (Selected Production Model)</li>
-            <li>Linear Regression (Baseline)</li>
-            <li>LSTM (Experimental Comparison)</li>
-        </ul>
+---
 
-        <p><strong>Best Model Performance:</strong></p>
-        <ul>
-            <li>R² Score: <strong>0.98</strong></li>
-            <li>RMSE: <strong>0.0179</strong></li>
-        </ul>
+## ✨ Key Features
 
-        <h3>Anomaly Detection</h3>
-        <ul>
-            <li><strong>Isolation Forest</strong> for unsupervised anomaly detection</li>
-            <li>3-hit anomaly confirmation guard</li>
-            <li>Cooldown logic to prevent alert spam</li>
-        </ul>
-    </div>
+✅ Real-time CPU, RAM, and network monitoring  
+✅ Random Forest-based CPU & RAM prediction  
+✅ Isolation Forest anomaly detection  
+✅ Hybrid anomaly detection (ML + threshold logic)  
+✅ Process-level PID attribution  
+✅ Desktop notifications for anomalies  
+✅ Streamlit dashboard for live monitoring  
+✅ JSON anomaly event logging  
 
-    <div class="section">
-        <h2>Feature Engineering</h2>
+---
 
-        <p>Temporal features were engineered to improve predictive accuracy:</p>
+## 🏗️ System Architecture
 
-        <ul>
-            <li><code>cpu_lag1</code>, <code>ram_lag1</code></li>
-            <li><code>cpu_roll_mean</code>, <code>ram_roll_mean</code></li>
-            <li><code>cpu_change</code>, <code>ram_change</code></li>
-        </ul>
+```text
+psutil Data Collection
+        ↓
+Feature Engineering
+        ↓
+Data Preprocessing + Scaling
+        ↓
+ ┌──────────────────────┬────────────────────────┐
+ │                      │                        │
+ │ Random Forest Model  │ Isolation Forest Model │
+ │ (Prediction)         │ (Anomaly Detection)    │
+ │                      │                        │
+ └──────────────────────┴────────────────────────┘
+        ↓
+Alert Engine + Process Attribution
+        ↓
+Streamlit Dashboard
+```
 
-        <p>
-            Feature engineering improved Random Forest performance from 
-            <strong>R² = 0.80 → 0.98</strong>.
-        </p>
-    </div>
+---
 
-    <div class="section">
-        <h2>Tech Stack</h2>
+## 🧠 Machine Learning Pipeline
 
-        <ul>
-            <li><strong>Python</strong></li>
-            <li><strong>psutil</strong> – system telemetry</li>
-            <li><strong>pandas / numpy</strong> – data processing</li>
-            <li><strong>scikit-learn</strong> – ML models</li>
-            <li><strong>TensorFlow / Keras</strong> – LSTM experiments</li>
-            <li><strong>joblib</strong> – model serialization</li>
-            <li><strong>Streamlit</strong> – real-time dashboard</li>
-            <li><strong>plyer</strong> – desktop alerts</li>
-        </ul>
-    </div>
+### Prediction Models Evaluated
 
-    <div class="section">
-        <h2>Project Structure</h2>
+| Model | R² Score | RMSE | Status |
+|------|---------|------|--------|
+| Linear Regression | 0.8876 | 0.1090 | Baseline |
+| Random Forest | **0.9802** | **0.0179** | ✅ Selected |
+| LSTM | 0.7410 | 0.0549 | Experimental |
 
-<pre>
+### Why Random Forest?
+
+Random Forest was selected because:
+
+- High prediction accuracy
+- Fast inference for real-time monitoring
+- Handles non-linear behavior effectively
+- Native support for multi-output regression
+
+---
+
+## 🌲 Anomaly Detection
+
+Anomalies are detected using **Isolation Forest**, an unsupervised anomaly detection algorithm.
+
+### Detection Strategy
+
+- Isolation Forest detects unusual system behavior
+- Rule-based thresholds detect obvious spikes
+- 3-hit anomaly confirmation guard reduces false positives
+- Cooldown logic prevents alert spam
+
+### Types of anomalies detected
+
+- CPU spikes
+- RAM spikes
+- Network spikes
+- Combined abnormal behavior
+
+---
+
+## ⚙️ Feature Engineering
+
+Temporal behavior was captured using engineered features:
+
+```python
+cpu_lag1
+ram_lag1
+cpu_roll_mean
+ram_roll_mean
+cpu_change
+ram_change
+```
+
+### Impact
+
+Feature engineering improved model performance significantly:
+
+```text
+Random Forest R²:
+0.80 → 0.98
+```
+
+This demonstrates the importance of capturing temporal dependencies in system telemetry.
+
+---
+
+## 📊 Visualization
+
+The project includes:
+
+- Actual vs Predicted performance plots
+- Residual analysis
+- Real-time system metric visualization
+- Streamlit dashboard monitoring
+
+---
+
+## 🛠️ Tech Stack
+
+**Programming Language**
+- Python
+
+**Libraries & Tools**
+- psutil
+- pandas
+- numpy
+- scikit-learn
+- TensorFlow / Keras
+- Streamlit
+- joblib
+- plyer
+- matplotlib
+
+---
+
+## 📂 Project Structure
+
+```text
 system-performance-monitor/
 │
 ├── data/
@@ -114,6 +170,7 @@ system-performance-monitor/
 │   ├── scaler.pkl
 │   ├── model.pkl
 │   ├── threshold.pkl
+│   └── std_residuals.pkl
 │
 ├── realtime/
 │   ├── main.py
@@ -122,72 +179,100 @@ system-performance-monitor/
 │   ├── data_collection.py
 │   ├── feature_engineering.py
 │   ├── data_processing.py
-│   ├── get_top_process.py
+│   └── get_top_process.py
 │
 ├── dashboard/
-│   ├── app.py
+│   └── app.py
 │
-└── README.html
-</pre>
+├── training/
+│   ├── random_forest.py
+│   ├── lstm.py
+│   └── linear_regression.py
+│
+└── README.md
+```
 
-    </div>
+---
 
-    <div class="section">
-        <h2>Setup & Installation</h2>
+## 🚀 Installation
 
-<pre>
+Clone the repository:
+
+```bash
 git clone https://github.com/yourusername/system-performance-monitor.git
 cd system-performance-monitor
+```
 
+Install dependencies:
+
+```bash
 pip install -r requirements.txt
-</pre>
+```
 
-        <p>Run real-time monitoring:</p>
+---
 
-<pre>
+## ▶️ Run the Project
+
+Start real-time monitoring:
+
+```bash
 python realtime/main.py
-</pre>
+```
 
-        <p>Launch dashboard:</p>
+Launch Streamlit dashboard:
 
-<pre>
+```bash
 streamlit run dashboard/app.py
-</pre>
+```
 
-    </div>
+---
 
-    <div class="section">
-        <h2>Research Inspiration</h2>
+## 🔍 Research Inspiration
 
-        <ul>
-            <li>Isolation Forest for cloud monitoring systems</li>
-            <li>Time-series anomaly detection using temporal context</li>
-            <li>Advanced anomaly detection using temporal correlation graphs</li>
-        </ul>
-    </div>
+This project is inspired by research in:
 
-    <div class="section">
-        <h2>Future Improvements</h2>
+- Isolation Forest for cloud anomaly detection
+- Time-series anomaly detection using temporal context
+- Temporal correlation modeling for anomaly detection
 
-        <ul>
-            <li>Email / Slack alert integration</li>
-            <li>Cloud deployment with Docker</li>
-            <li>Multi-machine distributed monitoring</li>
-            <li>XGBoost / ensemble prediction models</li>
-            <li>Deep Isolation Forest experimentation</li>
-        </ul>
-    </div>
+Key concepts adopted:
 
-    <div class="section">
-        <h2>Why This Project Matters</h2>
+- Real-time anomaly detection
+- Temporal feature engineering
+- Explainable anomaly attribution
 
-        <p>
-            Modern infrastructure monitoring is reactive and often opaque.
-            This project demonstrates how machine learning can create a lightweight,
-            explainable, proactive monitoring solution for real-world systems.
-        </p>
-    </div>
+---
 
-    <div class="footer">
-        Built by Shivani Dwivedi • Machine Learning • Systems Engineering
-    </div>
+## 🔮 Future Improvements
+
+Potential enhancements:
+
+- Email / Slack alert integration
+- Docker deployment
+- Cloud-based distributed monitoring
+- XGBoost-based prediction experiments
+- Deep Isolation Forest
+- Adaptive anomaly thresholds
+
+---
+
+## 💼 Why This Project Matters
+
+Modern monitoring tools are often reactive and black-box.
+
+This project demonstrates:
+
+- proactive monitoring
+- explainable anomaly detection
+- lightweight local observability
+- practical ML systems engineering
+
+---
+
+## 👩‍💻 Author
+
+**Shivani Dwivedi**
+
+Machine Learning | Systems Engineering | Real-Time Monitoring
+
+---
