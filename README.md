@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Performance Prediction & Anomaly Detection</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -277,6 +272,3 @@ streamlit run dashboard/app.py
     <div class="footer">
         Built by Shivani Dwivedi • Machine Learning • Systems Engineering
     </div>
-
-</body>
-</html>
